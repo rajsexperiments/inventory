@@ -11,6 +11,29 @@ interface AuthState {
   login: (credentials: { email: string; password?: string }) => Promise<boolean>;
   logout: () => void;
 }
+const login = async (username: string, password: string) => {
+  try {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
+    
+    const data = await response.json();
+    
+    if (data.success && data.user) {
+      setCurrentUser(data.user);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      return true;
+    }
+    
+    return false;
+  } catch (error) {
+    console.error('Login error:', error);
+    return false;
+  }
+};
+
 export const useAuthStore = create<AuthState>()(
   persist(
     (set, get) => ({
