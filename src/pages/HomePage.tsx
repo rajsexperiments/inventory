@@ -16,8 +16,8 @@ export function HomePage() {
   const { t } = useTranslation();
   const SCAN_EVENTS: { value: ScanEvent; label: string }[] = [
     { value: 'PRODUCTION_SCAN', label: t('scanner.events.PRODUCTION_SCAN') },
-    { value: 'MIRAZUR_BOOK_SCAN', label: t('scanner.events.MIRAZUR') },
-    { value: 'OFFICE_BOOK_SCAN', label: t('scanner.events.OFFICE SCAN') },
+    { value: 'BOUTIQUE_STOCK_SCAN', label: t('scanner.events.MIRAZUR') },
+    { value: 'MARCHE_STOCK_SCAN', label: t('scanner.events.OFFICE SCAN') },
     
   ];
   const [scanStatus, setScanStatus] = useState<'idle' | 'scanning' | 'success' | 'error' | 'permission_denied'>('idle');
